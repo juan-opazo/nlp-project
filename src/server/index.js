@@ -10,6 +10,10 @@ let textapi = new aylien({
     application_key: process.env.API_KEY
 })
 
+console.log(textapi);
+
+const baseURL = 'https://api.meaningcloud.com/sentiment-2.1?'
+
 // let meaningcloudapi = new meaningCloud({
 //     application_key: process.env.API_KEY_MEANING_CLOUD
 // })
@@ -32,4 +36,27 @@ app.listen(8080, function () {
 
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
+})
+
+app.post('/', function(req, res) {
+    console.log(res)
+    return null
+    userInput = req.body.input;
+    console.log(`You entered: ${userInput}`);
+    const apiURL = `${baseURL}key=${process.env.API_KEY_MEANING_CLOUD}&url=${userInput}&lang=en`
+
+    // const response = await fetch(apiURL)
+    // const mcData = await response.json()
+    // console.log(mcData)
+    // res.send(mcData)
+    /** server sends only specified data to the client with below codes
+     * const projectData = {
+     *  score_tag : mcData.score_tag,
+     *  agreement : mcData.agreement,
+     *  subjectivity : mcData.subjectivity,
+     *  confidence : mcData.confidence,
+     *  irony : mcData.irony
+     * }
+     * res.send(projectData);
+     * */
 })
