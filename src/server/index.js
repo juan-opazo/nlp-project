@@ -18,18 +18,21 @@ app.get('/', function (req, res) {
     res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
-// designates what port the app will listen to for incoming requests
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!')
-})
 
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
 
-app.post('/', function(req, res) {
+app.post('/api', function(req, res) {
     userInput = req.body.input;
     console.log(`You entered: ${userInput}`);
     const apiURL = `${baseURL}key=${process.env.API_KEY}&url=${userInput}&lang=en`
+    const response = await fetch(apiURL)
+    const data = await response.json()
+    res.send(data)
+})
 
+// designates what port the app will listen to for incoming requests
+app.listen(8080, function () {
+    console.log('Example app listening on port 8080!')
 })
