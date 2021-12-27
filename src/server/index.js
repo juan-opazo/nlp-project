@@ -5,8 +5,6 @@ const express = require('express')
 const mockAPIResponse = require('./mockAPI.js')
 
 
-console.log(textapi);
-
 const baseURL = 'https://api.meaningcloud.com/sentiment-2.1?'
 
 const app = express()
