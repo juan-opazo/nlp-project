@@ -6,7 +6,7 @@ function handleSubmit(event) {
     if(Client.checkForName(formText)) {
         console.log("::: Form Submitted :::")
     
-        postData('http://localhost:8080/api', {url: formText})
+        postData('http://localhost:8081/api', {url: formText})
         .then(function(res) {
             console.log(res);
             document.getElementById('polarity').innerHTML = 'Polarity: '+res.score_tag;
