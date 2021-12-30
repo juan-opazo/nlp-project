@@ -7,7 +7,6 @@ function handleSubmit(event) {
         console.log("::: Form Submitted :::")
     
         postData('http://localhost:8080/api', {url: formText})
-    
         .then(function(res) {
             console.log(res);
             document.getElementById('polarity').innerHTML = 'Polarity: '+res.score_tag;
@@ -24,6 +23,7 @@ function handleSubmit(event) {
 
 
 const postData = async (url = "", data = {}) => {
+    console.log(data)
     const response = await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
@@ -38,6 +38,7 @@ const postData = async (url = "", data = {}) => {
         console.log('Data received:', newData)
         return newData;
     } catch (error) {
+        console.log(response);
         console.log('error', error);
     }
 };
